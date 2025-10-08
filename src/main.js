@@ -68,5 +68,24 @@ Chat.prototype = {
             this.userList = this.userList.filter(item => item.id != id)
             this.drawUserList();
         })
+
+        window.socket.on('receiveMsg', data => {
+            this.setMessageJson(data);
+            if (data.sendId === this.sendFriend) {
+                this.drawMessageList();
+            } else {
+                $('.me_' + data.sendId).innerHTML = parseInt($('.me_' + data.sendId).innerHTML) + 1;
+                $('.me_' + data.sendId).style.display = 'block';
+            }
+        })
     }
 }
+
+let info = {
+    sendID: this.id,
+    id: this.username,
+    userName: this.userName,
+    img: this.userImg
+    msg: $('.inp').innerHTML
+}
+window.socket.emit('sendMsg', info)
