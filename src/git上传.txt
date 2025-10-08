@@ -1,0 +1,8 @@
+git config --global user.name "AL-sama0"
+git config --global user.email "ohyaustin192202@gmail.com"
+git init
+git add .
+git commit -m "更改"
+git remote add origin http://github.com/AL-sama0/OnlineChat.git
+git pull origin main --allow-unrelated-histories
+git push -u origin main
